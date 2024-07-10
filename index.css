@@ -1,13 +1,20 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    background: #5E63BA;
+    margin: 0;
+}
+
 .container-game-board {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
-.content-game-board {
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    background-color: white;
-    border-radius: 8px;
+    align-content: center;
+    height: 50vh;
+    margin: 20px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    justify-content: space-between;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.5);
 }
