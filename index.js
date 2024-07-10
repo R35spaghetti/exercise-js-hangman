@@ -1,11 +1,16 @@
-function ChangeOpacity(id, newOpacity)
-{
-    let svgDocument = document.getElementById("hangman-game").contentWindow.document;
+const ids = ['head', 'body', 'arms', 'legs', 'scaffold', 'ground'];
+
+document.addEventListener('DOMContentLoaded', function() {
+ids.forEach(id => {
+      ChangeOpacity(id, 1);
+});});
+
+function ChangeOpacity(id, newOpacity) {
+    let svgDocument = document.querySelector("#hangman-game").contentWindow.document;
     let element = svgDocument.getElementById(id);
 
-    if(element)
-    {
-       element.setAttribute('opacity', newOpacity);
+    if (element) {
+        element.setAttribute('opacity', newOpacity);
     }
 }
 
