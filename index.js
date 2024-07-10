@@ -12,3 +12,7 @@ function MakeWordHidden(word) {
     return hiddenWord;
 
 }
+
+function AskPlayer() {
+    return prompt("Guess either with 1 letter or the whole word");
+}
