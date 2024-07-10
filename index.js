@@ -9,12 +9,14 @@ function MakeWordHidden(word) {
     for (let i = 0; i < word.length; i++) {
         hiddenWord += ' _';
     }
-    return hiddenWord;
+    return hiddenWord.trim();
 
 }
 
 function AskPlayer() {
-    return prompt("Guess either with 1 letter or the whole word");
+    let result = prompt("Guess either with 1 letter or the whole word");
+    result = result.toLowerCase();
+    return result.trim();
 }
 
 function RevealWord(guess, word, hiddenWord) {
