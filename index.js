@@ -16,3 +16,18 @@ function MakeWordHidden(word) {
 function AskPlayer() {
     return prompt("Guess either with 1 letter or the whole word");
 }
+
+function RevealWord(guess, word, hiddenWord) {
+
+    if (guess.match(word)) {
+        return guess;
+    }
+    for (let i = 0; i < word.length; i++) {
+        if (guess === word[i]) {
+            hiddenWord = hiddenWord.replace('_', guess);
+        }
+    }
+    return hiddenWord;
+
+
+}
