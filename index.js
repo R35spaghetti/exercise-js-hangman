@@ -7,9 +7,9 @@ function GetRandomWord() {
 function MakeWordHidden(word) {
     let hiddenWord = '';
     for (let i = 0; i < word.length; i++) {
-        hiddenWord += ' _';
+        hiddenWord += '_';
     }
-    return hiddenWord.trim();
+    return hiddenWord;
 
 }
 
@@ -26,7 +26,7 @@ function RevealWord(guess, word, hiddenWord) {
     }
     for (let i = 0; i < word.length; i++) {
         if (guess === word[i]) {
-            hiddenWord = hiddenWord.replace('_', guess);
+            hiddenWord = hiddenWord.slice(0, i) + guess + hiddenWord.slice(i + 1);
         }
     }
     return hiddenWord;
