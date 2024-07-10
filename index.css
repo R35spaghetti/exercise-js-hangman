@@ -1,0 +1,17 @@
+.container-game-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+.content-game-board {
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background-color: white;
+    border-radius: 8px;
+}
+#hangman-game
+{
+    opacity: 0;
+}
