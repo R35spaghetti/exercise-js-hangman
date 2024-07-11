@@ -1,32 +1,45 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-height: 100vh;
     background: #5E63BA;
     margin: 0;
 }
 
 .container-game-board {
-    display: flex;
-    align-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 15rem);
     height: 50vh;
     margin: 20px;
     padding: 10px;
     background: #fff;
     border-radius: 10px;
-    justify-content: space-between;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8);
 }
 
 #letterbox-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+
 }
 
 .letter-box {
+    display: grid;
+    grid-row: 1;
     width: 30px;
     height: 30px;
     border: 2px solid black;
     margin-right: 5px;
+}
+
+.input-field
+{
+    display: grid;
+    grid-column: 2;
+    width: 150px;
+    height: 20px;
+    border: 2px solid black;
+
+}
+#hangman-game
+{
+    height: 100%;
+    width: 100%;
 }
