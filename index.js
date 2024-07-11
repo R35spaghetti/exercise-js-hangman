@@ -1,4 +1,6 @@
 const ids = ['head', 'body', 'arms', 'legs', 'scaffold', 'ground'];
+let result;
+
 document.addEventListener('DOMContentLoaded', function () {
     ids.forEach(id => {
         ChangeOpacity(id, 0);
@@ -6,12 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
     const {word, hiddenWord} = GetRandomWord();
     document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(hiddenWord);
+   let guess = AskPlayer();
 
-    //TODO steg att sedan fixa
-    AskPlayer();
-    RevealWord(word, hiddenWord);
+   // RevealWord(guess,word, hiddenWord);
 });
 
 function GenerateLetterBoxes(hiddenWord) {
@@ -42,9 +44,16 @@ function MakeWordHidden(word) {
 }
 
 function AskPlayer() {
-    let result = prompt("Guess either with 1 letter or the whole word");
-    result = result.toLowerCase();
-    return result.trim();
+    const userInputForm = document.querySelector('.input-field-form');
+    const userInput = document.querySelector("input[name='user-input']");
+    userInput.addEventListener('input', function () {
+        result = this.value;
+    });
+    userInputForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        result = result ? result.toLowerCase().trim() : '';
+    });
+    return result;
 }
 
 function RevealWord(guess, word, hiddenWord) {
