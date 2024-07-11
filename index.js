@@ -13,16 +13,31 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(hiddenWord);
     AskPlayer(word);
 });
-
+//TODO duplicate?
 function GenerateLetterBoxes(hiddenWord) {
-    if (hiddenWord !== " ") {
+    {
         return hiddenWord.map(letter => `<div class="letter-box">${letter}</div>`).join('');
-    } else {
-        return hiddenWord.map(_ => '<div class="letter-box"></div>').join('');
-
     }
 }
 
+function FillInLetterBoxes(letter, wordLength) {
+    let letterBoxes = Array(wordLength.length).fill('');
+    for (let i = 0; i < wordLength.length; i++) {
+
+        if (letter[i] === wordLength[i])
+        {
+            letterBoxes.push(`<div class="letter-box">${letter[i]}</div>`);
+        }
+        else
+        {
+            letterBoxes.push(`<div class="letter-box"></div>`);
+        }
+
+
+
+    }
+    return letterBoxes.join('');
+}
 
 function ChangeOpacity(id, newOpacity) {
     let svgDocument = document.querySelector("#hangman-game").contentWindow.document;
@@ -66,12 +81,12 @@ function RevealWord(guess, word) {
 
     if (guess.match(word)) {
         let guessArray = [...guess];
-        document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(guessArray);
+       document.getElementById("letterbox-container").innerHTML = FillInLetterBoxes(guessArray, word);
     }
     for (let i = 0; i < word.length; i++) {
         if (guess === word[i]) {
             guessedLetters[i] = guess
-            document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(guessedLetters);
+            document.getElementById("letterbox-container").innerHTML = FillInLetterBoxes(guessedLetters, word);
 
         }
     }
