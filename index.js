@@ -1,6 +1,6 @@
 const ids = ['head', 'body', 'arms', 'legs', 'scaffold', 'ground'];
 let result;
-
+let guessedLetters = [];
 document.addEventListener('DOMContentLoaded', function () {
     ids.forEach(id => {
         ChangeOpacity(id, 0);
@@ -11,13 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const {word, hiddenWord} = GetRandomWord();
     document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(hiddenWord);
-   let guess = AskPlayer();
-
-   // RevealWord(guess,word, hiddenWord);
+    AskPlayer(word);
 });
 
 function GenerateLetterBoxes(hiddenWord) {
-    return hiddenWord.map(_ => '<div class="letter-box"></div>').join('');
+    if (hiddenWord !== " ") {
+        return hiddenWord.map(letter => `<div class="letter-box">${letter}</div>`).join('');
+    } else {
+        return hiddenWord.map(_ => '<div class="letter-box"></div>').join('');
+
+    }
 }
 
 
@@ -40,10 +43,10 @@ function GetRandomWord() {
 }
 
 function MakeWordHidden(word) {
-    return Array(word.length).fill('_');
+    return Array(word.length).fill(' ');
 }
 
-function AskPlayer() {
+function AskPlayer(word) {
     const userInputForm = document.querySelector('.input-field-form');
     const userInput = document.querySelector("input[name='user-input']");
     userInput.addEventListener('input', function () {
@@ -52,20 +55,24 @@ function AskPlayer() {
     userInputForm.addEventListener('submit', function (e) {
         e.preventDefault();
         result = result ? result.toLowerCase().trim() : '';
+        RevealWord(result, word);
+
     });
+
     return result;
 }
 
-function RevealWord(guess, word, hiddenWord) {
+function RevealWord(guess, word) {
+
     if (guess.match(word)) {
-        return guess;
+        let guessArray = [...guess];
+        document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(guessArray);
     }
     for (let i = 0; i < word.length; i++) {
         if (guess === word[i]) {
-            hiddenWord = hiddenWord.slice(0, i) + guess + hiddenWord.slice(i + 1);
+            guessedLetters[i] = guess
+            document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(guessedLetters);
+
         }
     }
-    return hiddenWord;
-
-
 }
