@@ -1,6 +1,7 @@
 body {
     background: #5E63BA;
     margin: 0;
+    font-family: Arial, Times New Roman, Roboto, sans-serif;
 }
 
 .container-game-board {
@@ -22,7 +23,8 @@ body {
 
 #letterbox-container {
     display: grid;
-
+    text-align: center;
+    padding: 5px;
 }
 
 .input-field-form {
@@ -37,8 +39,8 @@ body {
 .letter-box {
     display: grid;
     grid-row: 1;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 20px;
     border: 2px solid black;
     margin-right: 5px;
 }
