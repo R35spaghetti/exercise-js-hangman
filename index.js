@@ -1,6 +1,6 @@
 const ids = ['ground', 'head', 'scaffold', 'legs', 'arms', 'body'];
 let result;
-let guessedLetters = [];
+let letters = [];
 let chances = 0;
 document.addEventListener('DOMContentLoaded', function () {
     ids.forEach(id => {
@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', () => {
     const word = GetRandomWord();
-    document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(guessedLetters, word);
+    document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
     AskPlayer(word);
 });
 
 
-function GenerateLetterBoxes(letter, wordLength) {
-    let letterBoxes = Array(wordLength.length).fill('');
-    for (let i = 0; i < wordLength.length; i++) {
+function GenerateLetterBoxes(letter, word) {
+    let letterBoxes = Array(word.length).fill('');
+    for (let i = 0; i < word.length; i++) {
 
-        if (letter[i] === wordLength[i]) {
+        if (letter[i] === word[i]) {
             letterBoxes.push(`<div class="letter-box">${letter[i]}</div>`);
         } else {
             letterBoxes.push(`<div class="letter-box"></div>`);
@@ -65,14 +65,14 @@ function AskPlayer(word) {
 function RevealWord(guess, word) {
     let incorrectGuess = true;
     if (guess.match(word)) {
-        let guessArray = [...guess];
-        document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(guessArray, word);
+        let letters = [...guess];
+        document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
         incorrectGuess = false;
     }
     for (let i = 0; i < word.length; i++) {
         if (guess === word[i]) {
-            guessedLetters[i] = guess
-            document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(guessedLetters, word);
+            letters[i] = guess
+            document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
             incorrectGuess = false;
 
         }
