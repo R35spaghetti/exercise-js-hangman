@@ -125,6 +125,7 @@ function GameOver(letters, word, guess) {
     if (chances === 6) {
         submitButton.disabled = true;
         RestartInstruction();
+        PresentSecretWord(word);
     } else if (currentWord === word || word === guess) {
         submitButton.disabled = true;
         const containerGameBoard = document.querySelector('.container-game-board');
@@ -157,4 +158,9 @@ function RestartInstruction() {
     const restart = document.querySelector('#restart');
     restart.innerHTML += '<p>Press F5 to restart!</p>';
 
+}
+function PresentSecretWord(word)
+{
+    const hiddenWord = document.querySelector('#secretWord');
+    hiddenWord.innerHTML += `<p>The secret word was: ${word}</p>`
 }
