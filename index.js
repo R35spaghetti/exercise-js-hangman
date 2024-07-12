@@ -114,9 +114,11 @@ function GameOver(letters, word, guess) {
     } else if (currentWord === word || word === guess) {
         submitButton.disabled = true;
         const containerGameBoard = document.querySelector('.container-game-board');
+        const body = document.querySelector('body');
         containerGameBoard.addEventListener("mouseover", function () {
             containerGameBoard.style.backgroundColor = CursorDisco();
         });
+        body.style.backgroundColor = "black";
     }
 
     function CursorDisco() {
