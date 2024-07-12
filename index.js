@@ -74,8 +74,8 @@ function AskPlayer(word) {
 function RevealWord(guess, word) {
     let incorrectGuess = true;
     if (guess === word) {
-        let letters = [...guess];
-        document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
+        let wholeWord = [...guess];
+        document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(wholeWord, word);
         incorrectGuess = false;
     }
     for (let i = 0; i < word.length; i++) {
