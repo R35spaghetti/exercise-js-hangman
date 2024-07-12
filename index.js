@@ -3,18 +3,26 @@ let result;
 let letters = [];
 let chances = 0;
 let guesses = [];
-document.addEventListener('DOMContentLoaded', function () {
-    ids.forEach(id => {
-        ChangeOpacity(id, 0);
+
+StartHangman();
+StartLetterBoxes();
+
+
+function StartHangman() {
+    document.addEventListener('DOMContentLoaded', function () {
+        ids.forEach(id => {
+            ChangeOpacity(id, 0);
+        });
     });
-});
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    const word = GetRandomWord();
-    document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
-    AskPlayer(word);
-});
-
+function StartLetterBoxes() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const word = GetRandomWord();
+        document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
+        AskPlayer(word);
+    });
+}
 
 function GenerateLetterBoxes(letter, word) {
     let letterBoxes = Array(word.length).fill('');
@@ -56,9 +64,8 @@ function AskPlayer(word) {
     userInputForm.addEventListener('submit', function (e) {
         e.preventDefault();
         result = result ? result.toLowerCase().trim() : '';
-       let duplicate = CheckAnswer(result)
-       if (!duplicate)
-        {
+        let duplicate = CheckAnswer(result)
+        if (!duplicate) {
             RevealWord(result, word);
         }
     });
