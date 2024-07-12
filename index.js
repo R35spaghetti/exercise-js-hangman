@@ -73,7 +73,7 @@ function AskPlayer(word) {
 
 function RevealWord(guess, word) {
     let incorrectGuess = true;
-    if (guess.match(word)) {
+    if (guess === word) {
         let letters = [...guess];
         document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
         incorrectGuess = false;
