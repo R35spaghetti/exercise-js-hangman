@@ -90,6 +90,7 @@ function RevealWord(guess, word) {
         ProceedHangman(ids[chances], 1)
         chances += 1;
     }
+    GameOver();
 }
 
 function ProceedHangman(id, opacity) {
@@ -98,4 +99,12 @@ function ProceedHangman(id, opacity) {
 
 function CheckAnswer(answer) {
     return guesses.some((guess) => guess.match(answer));
+}
+
+function GameOver() {
+    const submitButton = document.querySelector("button[type='submit']");
+
+    if (chances === 6) {
+        submitButton.disabled = true;
+    }
 }
