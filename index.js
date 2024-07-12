@@ -124,7 +124,7 @@ function GameOver(letters, word, guess) {
     });
     if (chances === 6) {
         submitButton.disabled = true;
-
+        RestartInstruction();
     } else if (currentWord === word || word === guess) {
         submitButton.disabled = true;
         const containerGameBoard = document.querySelector('.container-game-board');
@@ -132,7 +132,8 @@ function GameOver(letters, word, guess) {
         containerGameBoard.addEventListener("mouseover", function () {
             containerGameBoard.style.backgroundColor = CursorDisco();
         });
-        body.style.backgroundColor = "black";
+        body.style.backgroundColor = "gray";
+        RestartInstruction();
     }
 
 
@@ -148,6 +149,12 @@ function CursorDisco() {
 
 function PresentGuesses(guess) {
     const guessDiv = document.querySelector('#guessWork');
-        guessDiv.innerHTML += `<p>${guess}</p>`
+    guessDiv.innerHTML += `<p>${guess}</p>`
+
+}
+
+function RestartInstruction() {
+    const restart = document.querySelector('#restart');
+    restart.innerHTML += '<p>Press F5 to restart!</p>';
 
 }
