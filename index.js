@@ -103,6 +103,7 @@ function RevealWord(guess, word) {
         ProceedHangman(ids[chances])
         chances += 1;
     }
+    PresentGuesses(guess);
     GameOver(letters, word, guess);
 }
 
@@ -134,12 +135,19 @@ function GameOver(letters, word, guess) {
         body.style.backgroundColor = "black";
     }
 
-    function CursorDisco() {
-        const hue = Math.floor(Math.random() * 361);
-        const saturation = Math.random() * 100;
-        const lightness = Math.floor(Math.random() * 91) + 5;
-        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 
-    }
+}
+
+function CursorDisco() {
+    const hue = Math.floor(Math.random() * 361);
+    const saturation = Math.random() * 100;
+    const lightness = Math.floor(Math.random() * 91) + 5;
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+
+}
+
+function PresentGuesses(guess) {
+    const guessDiv = document.querySelector('#guessWork');
+        guessDiv.innerHTML += `<p>${guess}</p>`
 
 }
