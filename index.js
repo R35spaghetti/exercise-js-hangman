@@ -4,17 +4,8 @@ let letters = [];
 let chances = 0;
 let guesses = [];
 
-StartHangman();
+LoadHangmanSVG("hangman.svg");
 StartLetterBoxes();
-
-
-function StartHangman() {
-    document.addEventListener('DOMContentLoaded', function () {
-        ids.forEach(id => {
-            ChangeOpacity(id, 0);
-        });
-    });
-}
 
 function StartLetterBoxes() {
     document.addEventListener('DOMContentLoaded', () => {
@@ -39,12 +30,34 @@ function GenerateLetterBoxes(letter, word) {
     return letterBoxes.join('');
 }
 
-function ChangeOpacity(id, newOpacity) {
-    let svgDocument = document.querySelector("#hangman-game").contentWindow.document;
-    let element = svgDocument.getElementById(id);
+function LoadHangmanSVG(path) {
+    const obj = document.createElement('object');
+    const hangmanElement = document.querySelector("#hangman-game");
+    obj.id = "hangman";
+    obj.type = "image/svg+xml";
+    obj.data = path;
 
+
+    hangmanElement.append(obj);
+    obj.addEventListener('load', () => {
+        const svgDoc = obj.contentWindow.document;
+        const svgElements = svgDoc.querySelector('svg');
+        for (let child of svgElements.childNodes) {
+            if (child.nodeType === Node.ELEMENT_NODE) {
+                child.style.opacity = "0";
+            }
+        }
+
+    });
+
+}
+
+function ChangeOpacity(id) {
+    const svgDocument = document.querySelector("#hangman").contentWindow.document;
+    const SVGSVGElement = svgDocument.querySelector("svg");
+    let element = SVGSVGElement.getElementById(id);
     if (element) {
-        element.setAttribute('opacity', newOpacity);
+        element.style.opacity = "1";
     }
 }
 
@@ -87,14 +100,14 @@ function RevealWord(guess, word) {
     }
     guesses.push(guess);
     if (incorrectGuess) {
-        ProceedHangman(ids[chances], 1)
+        ProceedHangman(ids[chances])
         chances += 1;
     }
     GameOver(letters, word, guess);
 }
 
-function ProceedHangman(id, opacity) {
-    ChangeOpacity(id, opacity)
+function ProceedHangman(id) {
+    ChangeOpacity(id)
 }
 
 function CheckAnswer(answer) {

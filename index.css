@@ -15,8 +15,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8);
 }
+#hangman-game
+{
+    border: 2px solid blue;
+    padding: 10px;
+}
 
-#hangman-game {
+#hangman {
     height: 100%;
     width: 100%;
 }
