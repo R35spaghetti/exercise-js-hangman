@@ -2,6 +2,7 @@ const ids = ['ground', 'head', 'scaffold', 'legs', 'arms', 'body'];
 let result;
 let letters = [];
 let chances = 0;
+let guesses = [];
 document.addEventListener('DOMContentLoaded', function () {
     ids.forEach(id => {
         ChangeOpacity(id, 0);
@@ -55,8 +56,11 @@ function AskPlayer(word) {
     userInputForm.addEventListener('submit', function (e) {
         e.preventDefault();
         result = result ? result.toLowerCase().trim() : '';
-        RevealWord(result, word);
-
+       let duplicate = CheckAnswer(result)
+       if (!duplicate)
+        {
+            RevealWord(result, word);
+        }
     });
 }
 
@@ -72,9 +76,9 @@ function RevealWord(guess, word) {
             letters[i] = guess
             document.getElementById("letterbox-container").innerHTML = GenerateLetterBoxes(letters, word);
             incorrectGuess = false;
-
         }
     }
+    guesses.push(guess);
     if (incorrectGuess) {
         ProceedHangman(ids[chances], 1)
         chances += 1;
@@ -83,4 +87,8 @@ function RevealWord(guess, word) {
 
 function ProceedHangman(id, opacity) {
     ChangeOpacity(id, opacity)
+}
+
+function CheckAnswer(answer) {
+    return guesses.some((guess) => guess.match(answer));
 }
