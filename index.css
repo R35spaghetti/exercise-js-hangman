@@ -7,7 +7,7 @@ body {
 .container-game-board {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 15rem);
+    grid-template-rows: repeat(3, 15rem);
     height: 50vh;
     margin: 20px;
     padding: 10px;
@@ -25,10 +25,12 @@ body {
     display: grid;
     text-align: center;
     padding: 5px;
+    gap: 10px;
 }
 
 .input-field-form {
     display: grid;
+    gap: 5px;
     grid-row: 2;
     grid-column: 2;
     width: 150px;
