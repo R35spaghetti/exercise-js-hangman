@@ -90,7 +90,7 @@ function RevealWord(guess, word) {
         ProceedHangman(ids[chances], 1)
         chances += 1;
     }
-    GameOver();
+    GameOver(letters, word, guess);
 }
 
 function ProceedHangman(id, opacity) {
@@ -101,10 +101,30 @@ function CheckAnswer(answer) {
     return guesses.some((guess) => guess.match(answer));
 }
 
-function GameOver() {
+function GameOver(letters, word, guess) {
     const submitButton = document.querySelector("button[type='submit']");
+    let currentWord = "";
+    letters.forEach((letter) => {
+        currentWord += letter;
 
+    });
     if (chances === 6) {
         submitButton.disabled = true;
+
+    } else if (currentWord === word || word === guess) {
+        submitButton.disabled = true;
+        const containerGameBoard = document.querySelector('.container-game-board');
+        containerGameBoard.addEventListener("mouseover", function () {
+            containerGameBoard.style.backgroundColor = CursorDisco();
+        });
     }
+
+    function CursorDisco() {
+        const hue = Math.floor(Math.random() * 361);
+        const saturation = Math.random() * 100;
+        const lightness = Math.floor(Math.random() * 91) + 5;
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+
+    }
+
 }
