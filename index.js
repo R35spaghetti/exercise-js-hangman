@@ -1,4 +1,4 @@
-const ids = ['head', 'body', 'arms', 'legs', 'scaffold', 'ground'];
+const ids = ['ground', 'head', 'scaffold', 'legs', 'arms', 'body'];
 let result;
 let guessedLetters = [];
 document.addEventListener('DOMContentLoaded', function () {
