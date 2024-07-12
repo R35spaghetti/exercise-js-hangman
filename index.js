@@ -58,8 +58,6 @@ function AskPlayer(word) {
         RevealWord(result, word);
 
     });
-
-    return result;
 }
 
 function RevealWord(guess, word) {
