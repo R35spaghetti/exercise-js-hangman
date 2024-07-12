@@ -98,7 +98,7 @@ function ProceedHangman(id, opacity) {
 }
 
 function CheckAnswer(answer) {
-    return guesses.some((guess) => guess.match(answer));
+    return guesses.some((guess) => guess === answer);
 }
 
 function GameOver(letters, word, guess) {
