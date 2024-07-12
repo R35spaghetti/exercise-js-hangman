@@ -57,8 +57,8 @@ function GetRandomWord() {
 
 function AskPlayer(word) {
     const userInputForm = document.querySelector('.input-field-form');
-    const userInput = document.querySelector("input[name='user-input']");
-    userInput.addEventListener('input', function () {
+    const userInputField = document.querySelector("input[name='user-input']");
+    userInputField.addEventListener('input', function () {
         result = this.value;
     });
     userInputForm.addEventListener('submit', function (e) {
