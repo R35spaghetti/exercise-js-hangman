@@ -78,7 +78,7 @@ function AskPlayer(word) {
         e.preventDefault();
         result = result ? result.toUpperCase().trim() : '';
         let duplicate = CheckAnswer(result)
-        if (!duplicate) {
+        if (!duplicate && result !== "") {
             RevealWord(result, word);
         }
     });
